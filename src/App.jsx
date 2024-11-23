@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useState } from "react"; // To manage authentication state
+import { useState } from "react";
 import "./index.css";
 import AddTask from "./components/AddTask";
 import Sidebar from "./components/Sidebar";
@@ -28,13 +28,15 @@ const App = () => {
             <ToastContainer />
             {isAuthenticated && <Sidebar />} {/* Show Sidebar only if authenticated */}
             <Routes>
-                {/* Public Route: Login */}
-                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                {/* Public Route: Login, visible only if not authenticated */}
+                {!isAuthenticated ? (
+                    <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                ) : (
+                    <Route path="/" element={<Navigate to="/allTask" />} /> // Redirect to /allTask if authenticated
+                )}
 
-                {/* Protected Routes */}
                 {isAuthenticated ? (
                     <>
-                        <Route path="/" element={<AllTasks />} />
                         <Route path="/addTask" element={<AddTask />} />
                         <Route path="/allTask" element={<AllTasks />} />
                         <Route path="/completeTask" element={<CompleteTask />} />

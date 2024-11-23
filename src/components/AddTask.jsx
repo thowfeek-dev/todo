@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../store/taskSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const AddTask = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate(); // Initialize useNavigate
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -34,7 +36,6 @@ const AddTask = () => {
     };
 
     const handleStartDateChange = (date) => {
-        // Check if date is a valid Date object
         if (date instanceof Date && !isNaN(date)) {
             setFormData({
                 ...formData,
@@ -45,13 +46,38 @@ const AddTask = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!formData.title) {
+            toast.error("Please fill in all required fields", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
+
         const serializableFormData = {
             ...formData,
             startDate: formData.startDate.toISOString(),
             endDate: formData.endDate ? formData.endDate.toISOString() : null,
         };
-        console.log(serializableFormData);
+
         dispatch(addTask(serializableFormData));
+
+        toast.success("Task added successfully", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
         setFormData({
             title: "",
             description: "",
@@ -59,8 +85,10 @@ const AddTask = () => {
             endDate: null,
             status: "Pending",
             assignee: "",
-            priority: "",
+            priority: "P0",
         });
+
+        navigate("/"); // Redirect to the home page after successful submission
     };
 
     return (
@@ -136,63 +164,9 @@ const AddTask = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-wrap -mx-3 mb-2 sm:mb-6">
-                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label
-                                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    htmlFor="status"
-                                >
-                                    Status
-                                </label>
-                                <select
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="status"
-                                    name="status"
-                                    value={formData.status}
-                                    onChange={handleChange}
-                                >
-                                    <option value="Pending">Pending</option>
-                                    <option value="In Progress">In Progress</option>
-                                    <option value="Completed">Completed</option>
-                                    <option value="Deployed">Deployed</option>
-                                    <option value="Deleted">Deleted</option>
-                                </select>
-                            </div>
-                            <div className="w-full md:w-1/2 px-3">
-                                <label
-                                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    htmlFor="priority"
-                                >
-                                    Priority
-                                </label>
-                                <select
-                                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="priority"
-                                    name="priority"
-                                    value={formData.priority}
-                                    onChange={handleChange}
-                                >
-                                    <option value="P0">P0</option>
-                                    <option value="P1">P1</option>
-                                    <option value="P2">P2</option>
-                                </select>
-                            </div>
-                        </div>
                         <button
                             type="submit"
                             className="mt-8 w-full p-3 bg-sky-500 rounded-lg text-center text-white hover:bg-sky-300"
-                            onClick={() => {
-                                toast.success("Task added successfully", {
-                                    position: "top-right",
-                                    autoClose: 1500,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                });
-                                window.location.href = "/";
-                            }}
                         >
                             Add
                         </button>

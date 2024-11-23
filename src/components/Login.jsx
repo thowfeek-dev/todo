@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -7,7 +6,6 @@ const Login = ({ onLogin }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(""); // State for error messages
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +22,6 @@ const Login = ({ onLogin }) => {
                 pauseOnHover: true,
                 draggable: true,
             });
-            setTimeout(() => navigate("/"), 100); // Redirect after the toast
         } else {
             setError("Invalid username or password."); // Show error
             toast.error("Invalid login credentials!", {
@@ -39,15 +36,10 @@ const Login = ({ onLogin }) => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100 ">
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white p-8 rounded shadow-md w-96"
-            >
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-96">
                 <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-                {error && (
-                    <div className="text-red-500 text-center mb-4">{error}</div>
-                )}
+                {error && <div className="text-red-500 text-center mb-4">{error}</div>}
                 <div className="mb-4">
                     <label className="block mb-2">Username</label>
                     <input
@@ -80,4 +72,3 @@ const Login = ({ onLogin }) => {
 };
 
 export default Login;
-
