@@ -84,7 +84,7 @@ const AllTasks = () => {
                                 <option value="In Progress">In Progress</option>
                                 <option value="Completed">Completed</option>
                                 <option value="Deployed">Deployed</option>
-                                <option value="Deleted">Deleted</option>
+                                <option value="Deferred">Deferred</option>
                             </select>
                             <select
                                 className="bg-gray-200 p-2 rounded-xl"
@@ -100,27 +100,34 @@ const AllTasks = () => {
                     </div>
                 </div>
             </div>
-            <div
-                className="flex flex-wrap gap-y-4 gap-x-14 justify-center overflow-y-scroll mt-5 h-[80vh] sm:h-[80vh]"
-                style={{ backgroundSize: 'cover', backgroundPosition: 'center' ,backgroundImage: 'url("https://www.w3schools.com/howto/img_mountains.jpg")' }}
-            >
-                {filteredTasks.map((task) => (
-                    <TaskCard
-                        key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        description={task.description}
-                        startDate={task.startDate}
-                        endDate={task.endDate}
-                        status={task.status}
-                        assignee={task.assignee}
-                        priority={task.priority}
-                    />
-                ))}
-            </div>
+            {filteredTasks.length > 0 ? (
+                <div className="flex flex-wrap gap-y-4 gap-x-14 justify-center  overflow-y-scroll mt-5 h-[80vh] sm:h-[80vh]">
+                    {filteredTasks.map((task) => (
+                        <TaskCard
+                            key={task.id}
+                            id={task.id}
+                            title={task.title}
+                            description={task.description}
+                            startDate={task.startDate}
+                            endDate={task.endDate}
+                            status={task.status}
+                            assignee={task.assignee}
+                            priority={task.priority}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center mt-[17vh] sm:mt-[30vh]">
+                    <p>
+                        No tasks found.{" "}
+                        <Link to="/addTask" className="text-indigo-500">
+                            Add a new task
+                        </Link>
+                    </p>
+                </div>
+            )}
         </div>
     );
 };
 
 export default AllTasks;
-

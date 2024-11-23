@@ -10,10 +10,11 @@ import PendingTask from "./components/PendingTask";
 import Deployed from "./components/Deployed";
 import Deleted from "./components/Deleted";
 import "./App.css";
-
+import { ToastContainer } from "react-toastify";
 const App = () => {
     return (
         <div className="flex h-full">
+            <ToastContainer />
             <Sidebar />
             <Routes>
                 <Route path="/" element={<AllTasks />} />

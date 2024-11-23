@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import { addTask } from "../store/taskSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddTask = () => {
     const dispatch = useDispatch();
@@ -179,6 +181,18 @@ const AddTask = () => {
                         <button
                             type="submit"
                             className="mt-8 w-full p-3 bg-indigo-500 rounded-lg text-center text-white hover:bg-indigo-300"
+                            onClick={() => {
+                                toast.success("Task added successfully", {
+                                    position: "top-right",
+                                    autoClose: 1500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                });
+                                window.location.href = "/";
+                            }}
                         >
                             Add
                         </button>
