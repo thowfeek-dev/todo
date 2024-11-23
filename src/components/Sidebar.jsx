@@ -14,9 +14,9 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
     return (
         <div className="bg-sky-500 min-h-[100vh] sm:min-h-screen w-[5rem] sm:w-[19rem] flex flex-col gap-4 roboto-regular">
-            <div className="flex items-center gap-1 justify-center h-16 text-white text-xl font-bold mt-6">
+            <div className="flex items-center gap-1 justify-center h-16 text-scale-600 text-xl font-bold mt-6 sm:justify-start sm:pl-4">
                 <GrTask />
-                <Link to="/"> Task Manager</Link>
+                <Link to="/" className="hidden sm:inline text-3xl" > Task Manager</Link>
             </div>
             <nav className="flex gap-10 justify-start">
                 <ul className="py-6 flex flex-col justify-start">

@@ -36,8 +36,8 @@ const Login = ({ onLogin }) => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-96">
+        <div className="flex justify-center items-center min-h-screen  lg:pl-[35rem]">
+            <form onSubmit={handleSubmit} className="bg-green-300 p-8 rounded shadow-md w-96">
                 <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
                 {error && <div className="text-red-500 text-center mb-4">{error}</div>}
                 <div className="mb-4">
