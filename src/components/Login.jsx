@@ -60,10 +60,7 @@ const Login = ({ onLogin }) => {
                         required
                     />
                 </div>
-                <button
-                    type="submit"
-                    className="w-full bg-indigo-500 text-white p-2 rounded hover:bg-indigo-400"
-                >
+                <button type="submit" className="w-full bg-sky-500 text-white p-2 rounded hover:bg-sky-400">
                     Login
                 </button>
             </form>
