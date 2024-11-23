@@ -180,7 +180,7 @@ const AddTask = () => {
                         </div>
                         <button
                             type="submit"
-                            className="mt-8 w-full p-3 bg-indigo-500 rounded-lg text-center text-white hover:bg-indigo-300"
+                            className="mt-8 w-full p-3 bg-sky-500 rounded-lg text-center text-white hover:bg-sky-300"
                             onClick={() => {
                                 toast.success("Task added successfully", {
                                     position: "top-right",

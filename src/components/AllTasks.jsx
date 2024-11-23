@@ -30,7 +30,7 @@ const AllTasks = () => {
                         onClick={() => {
                             settoggle(!toggle);
                         }}
-                        className="flex justify-center items-center p-2 bg-indigo-500 rounded-xl"
+                        className="flex justify-center items-center p-2 bg-sky-500 rounded-xl"
                     >
                         {toggle ? (
                             <IoClose className="text-xl text-white" />
@@ -38,14 +38,14 @@ const AllTasks = () => {
                             <IoFilterSharp className="text-xl text-white" />
                         )}
                     </div>
-                    <div className="text-indigo-500 font-semibold">
+                    <div className="text-sky-500 font-semibold">
                         <p>
-                            <Link to="/addTask" className="text-indigo-500">
+                            <Link to="/addTask" className="text-sky-500">
                                 Add a new task✍️
                             </Link>
                         </p>
                     </div>
-                    <div className="text-indigo-500 font-semibold">All Task ({filteredTasks.length})</div>
+                    <div className="text-sky-500 font-semibold">All Task ({filteredTasks.length})</div>
                 </div>
                 <div
                     className={`${
@@ -54,7 +54,7 @@ const AllTasks = () => {
                 >
                     <div className="flex  flex-col sm:flex-row gap-2">
                         <div className="flex  flex-col sm:flex-row gap-2 items-center">
-                            <p className="font-bold text-xl text-indigo-500">Filter </p>
+                            <p className="font-bold text-xl text-sky-500">Filter </p>
                             <div className="flex justify-center gap-[10px] sm:gap-2 flex-col sm:flex-row items-center">
                                 <input
                                     className="bg-gray-200 p-2 rounded-xl w-[60vw] sm:w-auto appearance-none"
@@ -72,7 +72,7 @@ const AllTasks = () => {
                         </div>
                     </div>
                     <div className="flex gap-2 flex-col sm:flex-row items-center">
-                        <p className="font-bold text-xl text-indigo-400">Sort </p>
+                        <p className="font-bold text-xl text-sky-400">Sort </p>
                         <div className="flex justify-center gap-[10px] sm:gap-3 flex-row items-center">
                             <select
                                 className="bg-gray-200 p-2 rounded-xl"
@@ -120,7 +120,7 @@ const AllTasks = () => {
                 <div className="text-center mt-[17vh] sm:mt-[30vh]">
                     <p>
                         No tasks found.{" "}
-                        <Link to="/addTask" className="text-indigo-500">
+                        <Link to="/addTask" className="text-sky-500">
                             Add a new task
                         </Link>
                     </p>
